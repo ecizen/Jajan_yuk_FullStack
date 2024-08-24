@@ -56,10 +56,53 @@ const CartPage = () => {
     }
   };
 
+  const checkout = async () => {
+    const data = cartItems.map((cartItem) => ({
+      cartId: cartItem.id,
+      name: cartItem.product?.name,
+      price: cartItem.product?.price,
+      quantity: cartItem.quantity,
+    }));
+
+    try {
+      const response = await fetch("/api/token", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const requestData = await response.json();
+      window.snap.pay(requestData.token);
+
+      // Check if the response is valid JSON and contains the token
+      if (requestData && requestData.token) {
+        console.log("Token generated successfully:", requestData.token);
+      } else {
+        console.error("Failed to generate token:", requestData.error);
+      }
+    } catch (error) {
+      console.error("Error making request:", error);
+    }
+  };
+
+  useEffect(() => {
+    const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
+    const clientKey = process.env.NEXT_PUBLIC_CLIENT;
+    const script = document.createElement("script");
+    script.src = snapScript;
+    script.setAttribute("data-client-key", clientKey);
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto  bg-gray-100">
       <Container>
-        <div className="px-12 py-8 flex  items-start justify-between">
+        <div className="lg:px-12 px-6 py-8 lg:flex-row flex flex-col  items-start justify-between">
           {cartItems.length === 0 ? (
             <div className="bg-white rounded-lg p-8 text-center">
               <h1 className="text-lg font-semibold">Product Cart Not Found</h1>
@@ -69,7 +112,7 @@ const CartPage = () => {
               </p>
             </div>
           ) : (
-            <div className=" bg-white rounded-lg ">
+            <div className="lg:w-auto w-full bg-white rounded-lg ">
               <div className="  px-8  py-6 flex justify-between border-b border-gray-100">
                 <div className=" flex items-center space-x-2">
                   <Image src={images.ShoppingCart} alt="iconshoppincart" />
@@ -77,8 +120,39 @@ const CartPage = () => {
                 </div>
                 <h1 className=" text-ld font-semibold">{cartItemCount} Item</h1>
               </div>
-              <table class="table-auto w-full mx-auto">
-                <thead>
+              <div className="lg:hidden block py-4 px-8 space-y-8">
+                {cartItems.map((cartItem) => (
+                  <div key={cartItem.id} className="w-full  flex space-x-2  items-center">
+                    <div>
+                      {cartItem.product?.images && (
+                        <Image
+                          alt="image"
+                          width={100}
+                          height={100}
+                          className="w-[80px] h-[80px] rounded-md group-hover:brightness-50 transition-all ease-in-out duration-300 mr-2"
+                          src={
+                            cartItem.product?.images?.[0]?.url ||
+                            "/fallback-image.jpg"
+                          }
+                        />
+                      )}
+                    </div>
+                    <div className="space-y-2">
+                       <p className="text-sm">{cartItem.product?.name}</p>
+                       <p className=" text-clip  text-xs">Grapic card RTX 4090 limited..</p>
+                       <Currency
+                          className=" font-semibold text-xs text-blue-600"
+                          value={cartItem.product?.price}
+                        />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* yang atas ini bagian mobile version */}
+
+              <table class="table-auto w-full mx-auto lg:block md:hidden hidden">
+                <thead className="">
                   <tr>
                     <th className=" text-xs text-gray-400 font-normal">
                       Product Detail
@@ -98,7 +172,7 @@ const CartPage = () => {
                   {cartItems.map((cartItem) => (
                     <tr
                       key={cartItem.id}
-                      className=" border border-gray-100 relative"
+                      className=" border border-gray-100 relative "
                     >
                       <td className="flex space-x-2 items-center py-4 px-12">
                         {cartItem.product?.images && (
@@ -145,7 +219,7 @@ const CartPage = () => {
               </table>
             </div>
           )}
-          <div className=" w-[400px]  bg-white rounded-lg overflow-hidden">
+          <div className=" lg:w-[400px] w-full lg:mt-0 mt-8  bg-white rounded-lg overflow-hidden">
             <header className="w-full h-2 bg-blue-500" />
             <div className="py-4 px-8 border-y border-gray-200">
               <h1 className=" text-md font-semibold text-center">
@@ -206,7 +280,12 @@ const CartPage = () => {
                 />
               </div>
               <div className="py-4">
-                    <button className="w-full text-white text-xs font-semibold px-4 h-10 bg-blue-500">PLACES ORDER</button>
+                <button
+                  onClick={checkout}
+                  className="w-full text-white text-xs font-semibold px-4 h-10 bg-blue-500"
+                >
+                  PLACES ORDER
+                </button>
               </div>
             </div>
 
