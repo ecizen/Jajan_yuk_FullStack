@@ -126,7 +126,7 @@ const CartPage = () => {
                     <div>
                       {cartItem.product?.images && (
                         <Image
-                          alt="image"
+                          alt="image new"
                           width={100}
                           height={100}
                           className="w-[80px] h-[80px] rounded-md group-hover:brightness-50 transition-all ease-in-out duration-300 mr-2"
