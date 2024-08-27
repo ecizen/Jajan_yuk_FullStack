@@ -44,9 +44,7 @@ const ModalSignIn = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="text-xs px-4 py-2 bg-neutral-800 rounded-md text-white">
-        Login
-      </DialogTrigger>
+      <DialogTrigger className="text-xs px-4 py-2 bg-neutral-800 rounded-md text-white"><p>Login</p></DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Welcome black</DialogTitle>
@@ -98,7 +96,7 @@ const ModalSignIn = () => {
             Google
           </button>
           <p className="text-xs text-neutral-800 text-center">
-            you don't have an account?{" "}
+            you don't have an account?
             <span>
               <a href="/sign-up" className="text-blue-500 font-medium">
                 Register
