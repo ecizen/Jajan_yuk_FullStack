@@ -6,6 +6,8 @@ import React from 'react'
 import getBanner from '../../../actions/get-banner';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation'
+import HeroSection from './components/hero'
+import ProductForYou from './components/for-you'
 
 const HomePage = () => {
   const router =  useRouter()
@@ -15,15 +17,14 @@ const HomePage = () => {
     console.log("Ter autentikasi" , session)
   }
   return (
-    <div className='max-w-7xl mx-auto px-4 py-4'>
+    <main className='max-w-7xl mx-auto '>
       <Container>
         <div className=''>
-          <ProductList
-            title="Product List"
-          />   
+          <HeroSection/>
+          <ProductForYou/>
         </div>
       </Container>
-    </div>
+    </main>
   )
 }
 

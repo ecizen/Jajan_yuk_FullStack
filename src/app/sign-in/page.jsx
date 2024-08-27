@@ -9,7 +9,7 @@ const SignInButton = () => {
 
   useEffect(() => {
     if (status === 'authenticated' && session?.user?.id) {
-      router.push(`/cart/${session.user.id}`);
+      router.push(`/`);
     }
   }, [session, status, router]);
 
