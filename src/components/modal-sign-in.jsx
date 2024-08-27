@@ -49,7 +49,7 @@ const ModalSignIn = () => {
         <DialogHeader>
           <DialogTitle>Welcome black</DialogTitle>
           <DialogDescription className="text-xs">
-            <p className="mt-4">let's explore the shoop again with us</p>
+            <p className="mt-4">let&apos;s explore the shoop again with us</p>
           </DialogDescription>
         </DialogHeader>
         <div className="p-4 w-full bg-gray-100 rounded-lg">
@@ -96,7 +96,7 @@ const ModalSignIn = () => {
             Google
           </button>
           <p className="text-xs text-neutral-800 text-center">
-            you don't have an account?
+            you don&apos;t have an account?
             <span>
               <a href="/sign-up" className="text-blue-500 font-medium">
                 Register
