@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import ModalSignIn from "./modal-sign-in";
+import Image from "next/image";
 
 const ProductList = ({ title }) => {
   const { data: session, status } = useSession();
@@ -43,3 +44,5 @@ const ProductList = ({ title }) => {
     </div>
   );
 };
+
+export default ProductList;
