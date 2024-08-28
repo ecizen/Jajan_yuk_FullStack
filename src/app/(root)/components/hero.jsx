@@ -8,7 +8,7 @@ const inter = Poppins({ subsets: ["latin"], weight: "400" });
 const HeroSection = () => {
   return (
     <div className={inter.className}>
-      <section className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 lg:px-12 px-8 bg-gray-100 py-8 ">
+      <section className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 lg:px-12 md:px-8 px-6 bg-gray-100 py-6 ">
         <div className="flex flex-col justify-center">
           <h1 className="text-4xl text-neutral-900 font-bold max-w-sm leading-tight">
             Find the Best Laptop & PC for Your Every Need

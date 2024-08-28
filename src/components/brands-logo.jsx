@@ -7,7 +7,7 @@ const BrandsLogo = () => {
   return (
     <div className="w-full bg-neutral-800">
           <Marquee>
-         <div className="flex items-center px-6 py-6 gap-12">
+         <div className="flex items-center lg:p-6 md:p-4 p-0 gap-12">
             <Image src={images.MackLogo} width={250} alt="brand"/>
             <Image src={images.NvidiaLogo} width={250} alt="brand"/>
             <Image src={images.AssusLogo} width={180} alt="brand"/>

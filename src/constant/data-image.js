@@ -11,6 +11,12 @@ import NvidiaLogo from '../assets/Image/nvidia.svg'
 import Samssung from '../assets/Image/Samsung.svg'
 import iconCart from '../assets/Image/Cart.svg'
 import iconAccount from '../assets/Image/Account.svg'
+import benefitUi from '../assets/Image/benefit.svg'
+import Chekclist from '../assets/Image/Ceklist.svg'
+import giftIcon from '../assets/Image/gift.svg'
+import hammerIcon from '../assets/Image/Hammer.svg'
+import shoppingIcon from '../assets/Image/ShoppingBag.svg'
+import verifiedIcon from '../assets/Image/Verified.svg'
 
 const images = {
     star,
@@ -25,7 +31,13 @@ const images = {
     NvidiaLogo,
     Samssung,
     iconCart,
-    iconAccount
+    iconAccount,
+    benefitUi,
+    Chekclist,
+    giftIcon,
+    hammerIcon,
+    shoppingIcon,
+    verifiedIcon,
 
     // Add more images here...
  
