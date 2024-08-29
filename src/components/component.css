@@ -10,3 +10,8 @@
       transform: translateX(-100%);
     }
   }
+
+  .slick-track {
+    display: flex;
+    gap: 8px;
+  }

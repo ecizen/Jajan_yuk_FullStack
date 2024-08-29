@@ -1,33 +1,64 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GetBestProduct from "../../../../actions/get-best-product";
+import OptionCard from "@/components/explore-card";
+import GetProduct from "../../../../actions/get-product";
+import GetCategory from "../../../../actions/get-category";
+import { useRouter } from "next/navigation";
 
 export default function BestProduct() {
-  const [bestProduct, setBestProduct] = useState([]);
-  const [loading , setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const sliderRef = useRef(null);
+
+
+  const handleNext = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+  const handlePrev = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+
+  const handleClick = (productId, storeId) => {
+    router.push(`/shop/${productId}`);
+    console.log("data berhasil didapatkan", productId);
+  };
 
   useEffect(() => {
-    const loadBestProduct = async () => {
-        setLoading(true);
-        const fetchedBestProduct = await GetBestProduct();
-        setBestProduct(fetchedBestProduct);
-        setLoading(false);
-        console.log();
-    }
-    loadBestProduct();
+    const loadProducts = async () => {
+      setLoading(true);
+      const fetchedProducts = await GetProduct();
+      setProducts(fetchedProducts);
+      setLoading(false);
+    };
+    loadProducts();
+  }, []);
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const fetchedProducts = await GetCategory();
+      setCategories(fetchedProducts);
+    };
+
+    loadProducts();
   }, []);
 
   if (loading) return <div>Loading...</div>;
-  if (!bestProduct) return <div>No best product found</div>;
+  if (!products) return <div>No best product found</div>;
 
   return (
-    <div className="min-h-screen">
-        {bestProduct.map((unguls) =>(
-            <div key={unguls.product?.id}>
-                <p className="text-black">{unguls.product?.name}</p>
-                <p className="text-black">{unguls.product?.location}</p>
-                <p className="text-black">{unguls.product?.description}</p>
-            </div>
-        ))}
-    </div>
-  )
+    <section className="bg-white lg:px-8 px-4 lg:py-8 py-4">
+      <h1 className="text-lg font-semibold text-black">Featured Listings</h1>
+      <div className="mt-6">
+        <OptionCard data={products} filter={categories} goDetail={handleClick} />
+      </div>
+   
+    </section>
+  );
 }

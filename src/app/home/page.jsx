@@ -1,29 +1,33 @@
 'use client'
-import ProductList from '@/components/product-list'
-import Container from '@/components/ui/container'
-import React from 'react'
+import React, { useEffect, useState } from "react";
 
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation'
+import OptionCard from "@/components/explore-card";
+import GetProduct from "../../../actions/get-product";
 
-const HomePage = () => {
-  const router =  useRouter()
-  const {data:session} = useSession()
-  
-  if (session) {
-    console.log("Ter autentikasi" , session)
-  }
+export default function BestProduct() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      const fetchedProducts = await GetProduct();
+      setProducts(fetchedProducts);
+      setLoading(false);
+    };
+    loadProducts();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (!products) return <div>No best product found</div>;
+
   return (
-    <div className='max-w-7xl mx-auto px-4 py-4'>
-      <Container>
-        <div className=' mt-6'>
-          <ProductList
-            title="Product List"
-          />   
-        </div>
-      </Container>
+    <section className='bg-white lg:px-8 px-4 lg:py-8 py-4'>
+    <h1 className='lg:text-2xl text-xl text-black font-semibold'>Choose easily here</h1>
+    <p className='text-sm mt-2 text-gray-400'>makes it easier for you to search by filtering destinations by category</p>
+    <div className='mt-6'>
+       <OptionCard data={products}/>
     </div>
+ </section>
   )
 }
-
-export default HomePage;

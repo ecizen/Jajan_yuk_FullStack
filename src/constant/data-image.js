@@ -17,6 +17,11 @@ import giftIcon from '../assets/Image/gift.svg'
 import hammerIcon from '../assets/Image/Hammer.svg'
 import shoppingIcon from '../assets/Image/ShoppingBag.svg'
 import verifiedIcon from '../assets/Image/Verified.svg'
+import arrow from '../assets/Image/arrow3.svg'
+import profileLeslie from '../assets/Image/Leslie.svg'
+import profileFloyd from '../assets/Image/Floyd.svg'
+import profileMessi from '../assets/Image/Messi.svg'
+import kutip from '../assets/Image/kutipIcon.svg'
 
 const images = {
     star,
@@ -38,8 +43,12 @@ const images = {
     hammerIcon,
     shoppingIcon,
     verifiedIcon,
+    arrow, 
+    profileLeslie,
+    profileFloyd,
+    profileMessi,
+    kutip
 
-    // Add more images here...
  
 };
 

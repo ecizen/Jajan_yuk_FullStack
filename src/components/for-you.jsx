@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Currency from "./ui/currency";
 import { Expand, Map, MapIcon } from "lucide-react";
-import { bouncy } from "ldrs";
+
 
 const ForYou = ({ title }) => {
   const router = useRouter();
@@ -51,11 +51,12 @@ const ForYou = ({ title }) => {
                 </div>
               </div>
               <div>
-                <p className="text-xs text-black truncate">
+                <p className="text-xs font-semibold">{product.name}</p>
+                <p className="text-xs text-black truncate mt-1 ">
                   {product.description}
                 </p>
-                <Currency value={product?.price} />
-                <div className=" lg:flex  mt-2  sm:hidden hidden space-x-2 items-center">
+                <Currency value={product?.price}  className="text-sm mt-2 text-purple-700"/>
+                <div className=" lg:flex  mt-4  sm:hidden hidden space-x-2 items-center">
                   <MapIcon className="" width={16} />
                   <p className="text-[12px] text-gray-900 ">
                     {product.location}
