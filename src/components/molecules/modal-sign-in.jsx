@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from "../ui/dialog";
 import images from "@/constant/data-image";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
@@ -44,7 +44,9 @@ const ModalSignIn = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="text-xs px-4 py-2 bg-neutral-800 rounded-md text-white"><p>Login</p></DialogTrigger>
+      <DialogTrigger className="text-xs px-4 py-2 bg-neutral-800 rounded-md text-white">
+        <p>Login</p>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Welcome black</DialogTitle>
@@ -68,7 +70,10 @@ const ModalSignIn = () => {
                 className="w-full h-10 text-xs px-4 rounded-md shadow-sm"
                 placeholder="Enter Password"
               />
-              <EyeIcon onClick={handleToggleShowPassword} className="absolute right-4 top-2 "/>
+              <EyeIcon
+                onClick={handleToggleShowPassword}
+                className="absolute right-4 top-2 "
+              />
             </div>
           </div>
           <div className="flex justify-between items-center mb-4">

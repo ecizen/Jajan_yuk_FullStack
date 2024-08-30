@@ -10,6 +10,8 @@ import axios from "axios";
 import MainNavLanding from "./main-nav";
 import ModalSignIn from "./modal-sign-in";
 import images from "@/constant/data-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -57,9 +59,9 @@ export default function Navbar() {
           <MenuIcon />
         </div>
         <div className="lg:flex hidden space-x-12">
-          <div className=" flex gap-4">
+          <div onClick={signOut} className=" flex gap-4">
             <a
-              href="/"
+          
               className="lg:block hidden text-xl text-gray-900 font-semibold"
             >
               JAJAN.YUK
@@ -90,7 +92,7 @@ export default function Navbar() {
           <div className="">
             <form
               onSubmit={handleSearch}
-              className="lg:flex hidden items-center"
+              className="lg:flex hidden items-center relative"
             >
               <input
                 type="text"
@@ -99,6 +101,7 @@ export default function Navbar() {
                 placeholder="Search by name or category..."
                 className="border border-gray-200  p-3 text-xs w-[340px]"
               />
+              <FontAwesomeIcon icon={faSearch} className=" absolute  right-4 text-gray-400"/>
             </form>
           </div>
           {session ? (

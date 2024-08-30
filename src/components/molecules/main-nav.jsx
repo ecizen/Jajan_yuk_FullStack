@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import GetCategory from "../../actions/get-category";
+import GetCategory from "../../../actions/get-category";
 
 import Link from "next/link";
 import {
@@ -9,7 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "../ui/dropdown-menu";
 
 const MainNavLanding = ({ data }) => {
   const { categoryId } = useParams();
@@ -46,7 +46,9 @@ const MainNavLanding = ({ data }) => {
         {categories.map((category) => (
           <div key={category.id}>
             <DropdownMenuItem>
-              <a href={`/home/product/category/${category.id}`}>{category.name}</a>
+              <a href={`/home/product/category/${category.id}`}>
+                {category.name}
+              </a>
             </DropdownMenuItem>
           </div>
         ))}

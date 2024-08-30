@@ -2,9 +2,10 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 
 import SessionProvider from "../../../providers/session-provider";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/molecules/navbar";
+import Footer from "@/components/molecules/footer";
 
-const inter = Poppins({ subsets: ["latin"] , weight: "400" });
+const inter = Poppins({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "Create Next App",
@@ -16,8 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider>
-          <Navbar/>
+          <Navbar />
           {children}
+          <Footer/>
         </SessionProvider>
       </body>
     </html>

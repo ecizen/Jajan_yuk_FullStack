@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import GetProduct from "../../actions/get-product";
+import GetProduct from "../../../actions/get-product";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Currency from "./ui/currency";
+import Currency from "../ui/currency";
 import { Expand, Map, MapIcon } from "lucide-react";
-
 
 const ForYou = ({ title }) => {
   const router = useRouter();
@@ -28,10 +27,10 @@ const ForYou = ({ title }) => {
 
   return (
     <div>
-    <h1 className="text-xl font-semibold mb-4">{title}</h1>
+      <h1 className="text-xl font-semibold mb-4">{title}</h1>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.length > 0 ? (
-          products.slice(0,4).map((product) => (
+          products.slice(0, 4).map((product) => (
             <div
               key={product.id}
               className="bg-white cursor-pointer group  rounded-xl border p-3 space-y-4"
@@ -55,7 +54,10 @@ const ForYou = ({ title }) => {
                 <p className="text-xs text-black truncate mt-1 ">
                   {product.description}
                 </p>
-                <Currency value={product?.price}  className="text-sm mt-2 text-purple-700"/>
+                <Currency
+                  value={product?.price}
+                  className="text-sm mt-2 text-purple-700"
+                />
                 <div className=" lg:flex  mt-4  sm:hidden hidden space-x-2 items-center">
                   <MapIcon className="" width={16} />
                   <p className="text-[12px] text-gray-900 ">

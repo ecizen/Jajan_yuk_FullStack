@@ -1,10 +1,14 @@
 import { useSession } from "next-auth/react";
 import ModalSignIn from "./modal-sign-in";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import GetProduct from "../../../actions/get-product";
 
 const ProductList = ({ title }) => {
   const { data: session, status } = useSession();
   const [showModal, setShowModal] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleClick = (productId, storeId) => {
     if (status === "authenticated" && session?.user?.id) {
@@ -13,6 +17,17 @@ const ProductList = ({ title }) => {
       router.push(`/home/product/${productId}`);
     }
   };
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      const fetchedProducts = await GetProduct();
+      setProducts(fetchedProducts);
+      setLoading(false);
+    };
+    loadProducts();
+  }, []);
+
 
   return (
     <div>

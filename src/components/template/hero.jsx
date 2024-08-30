@@ -1,8 +1,9 @@
-import BrandsLogo from "@/components/brands-logo";
+import BrandsLogo from "@/components/molecules/brands-logo";
 import images from "@/constant/data-image";
 import { signOut } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 const inter = Poppins({ subsets: ["latin"], weight: "400" });
 const HeroSection = () => {
@@ -19,15 +20,17 @@ const HeroSection = () => {
             At Jajan yuk, we offer a wide selection of high-quality laptops,
             PCs, and accessories designed to meet all your technology needs.
           </p>
-          <button onClick={signOut} className="px-6 h-10 rounded-full bg-neutral-800 text-white text-sm mt-4 max-w-max">
-            Go Shopp
-          </button>
+          <Link href='/shop'>
+            <button className="px-6 h-10 rounded-full bg-neutral-800 text-white text-sm mt-4 max-w-max">
+              Go Shopp
+            </button>
+          </Link>
         </div>
         <div>
-            <Image src={images.file} alt="file"/>
+          <Image src={images.file} alt="file" />
         </div>
       </section>
-      <BrandsLogo/>
+      <BrandsLogo />
     </div>
   );
 };

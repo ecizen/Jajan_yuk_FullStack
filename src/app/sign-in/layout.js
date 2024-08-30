@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import SessionProvider from "../../../providers/session-provider";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/molecules/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,10 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <SessionProvider>
-      
-      {children}
-      </SessionProvider>
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );

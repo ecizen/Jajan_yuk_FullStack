@@ -4,11 +4,11 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "./component.css";
 import { Bookmark } from "lucide-react";
-import Currency from "./ui/currency";
+import Currency from "../ui/currency";
 import _ from "lodash";
 import images from "@/constant/data-image";
 
-export default function OptionCard({ data , filter, goDetail, ref}) {
+export default function OptionCard({ data, filter, goDetail, ref }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selected, setActive] = useState(1);
 
@@ -31,7 +31,6 @@ export default function OptionCard({ data , filter, goDetail, ref}) {
     }
   };
 
-  
   const settings = {
     dots: false,
     infinite: true,
@@ -53,19 +52,17 @@ export default function OptionCard({ data , filter, goDetail, ref}) {
     ],
   };
 
-  
-
-const filteredItems =
-  selectedCategory === "All"
-    ? _.uniqBy(data, "id")
-    : data.filter((item) => item.category.id === selectedCategory);
+  const filteredItems =
+    selectedCategory === "All"
+      ? _.uniqBy(data, "id")
+      : data.filter((item) => item.category.id === selectedCategory);
   return (
     <div className="overflow-hidden">
       <div className="flex flex-wrap gap-4 mb-4">
         {filter.map((fltr) => (
           <button
             key={fltr.id}
-            onClick={() => handleCategoryChange( fltr.id)}
+            onClick={() => handleCategoryChange(fltr.id)}
             className={` ${
               selected === fltr.id
                 ? " bg-neutral-100 border border-neutral-200 rounded-full"
@@ -86,7 +83,6 @@ const filteredItems =
         <Slider {...settings} ref={sliderRef} className="w-full  ">
           {filteredItems.map((item) => (
             <div
-          
               key={item.id}
               className="p-2 cursor-pointer flex items-center w-full rounded-lg relative border border-neutral-200 "
             >
@@ -113,10 +109,16 @@ const filteredItems =
                   </p>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
-                   <Currency value={item.price} className="text-sm font-bold"></Currency>
-                   <button
-                       onClick={() => goDetail(item.id)}
-                    className="text-xs font-semibold text-blue-500">View Details</button>
+                  <Currency
+                    value={item.price}
+                    className="text-sm font-bold"
+                  ></Currency>
+                  <button
+                    onClick={() => goDetail(item.id)}
+                    className="text-xs font-semibold text-blue-500"
+                  >
+                    View Details
+                  </button>
                 </div>
               </div>
             </div>
@@ -124,13 +126,19 @@ const filteredItems =
         </Slider>
       </div>
       <div className="mt-4 flex items-center space-x-2">
-          <button onClick={handlePrev} className="p-2 rounded-full border shadow-md">
-            <Image src={images.arrow} alt="icon"/>
-          </button>
-          <button onClick={handleNext} className="p-2 rounded-full border  shadow-md">
-          <Image src={images.arrow} alt="icon" className=" rotate-180"/>
-          </button>
-        </div>
+        <button
+          onClick={handlePrev}
+          className="p-2 rounded-full border shadow-md"
+        >
+          <Image src={images.arrow} alt="icon" />
+        </button>
+        <button
+          onClick={handleNext}
+          className="p-2 rounded-full border  shadow-md"
+        >
+          <Image src={images.arrow} alt="icon" className=" rotate-180" />
+        </button>
+      </div>
     </div>
   );
 }
